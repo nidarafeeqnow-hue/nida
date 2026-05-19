@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ name }} | Portfolio</title>
+    <link rel="stylesheet" href="{% static 'portfolio/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a class="brand" href="#home">{{ name }}</a>
+            <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="home">
+        <section class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Hello, I am</p>
+                <h1>{{ name }}</h1>
+                <p class="role">{{ role }}</p>
+                <p class="intro">
+                    I build simple, useful web applications with clean backend logic and friendly frontend experiences.
+                </p>
+                <div class="hero-actions">
+                    <a class="button primary" href="#projects">View Projects</a>
+                    <a class="button secondary" href="#contact">Contact Me</a>
+                </div>
+            </div>
+            <div class="profile-card" aria-label="Profile summary">
+                <div class="avatar">YN</div>
+                <h2>Available for work</h2>
+                <p>Focused on Django apps, responsive pages, and practical web tools.</p>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <div class="section-heading">
+                <p class="eyebrow">About</p>
+                <h2>A short introduction</h2>
+            </div>
+            <p class="about-text">
+                I am a developer who enjoys turning ideas into working websites. This portfolio is powered by Django on the backend and uses HTML, CSS, and JavaScript for the frontend.
+            </p>
+        </section>
+
+        <section class="section" id="skills">
+            <div class="section-heading">
+                <p class="eyebrow">Skills</p>
+                <h2>Technologies I use</h2>
+            </div>
+            <div class="skills-grid">
+                {% for skill in skills %}
+                    <span>{{ skill }}</span>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <div class="section-heading">
+                <p class="eyebrow">Projects</p>
+                <h2>Selected work</h2>
+            </div>
+            <div class="projects-grid">
+                {% for project in projects %}
+                    <article class="project-card">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description }}</p>
+                        <span>{{ project.tools }}</span>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+            <div class="section-heading">
+                <p class="eyebrow">Contact</p>
+                <h2>Let us build something</h2>
+            </div>
+            <form class="contact-form">
+                <label>
+                    Name
+                    <input type="text" name="name" placeholder="Your name">
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" placeholder="you@example.com">
+                </label>
+                <label>
+                    Message
+                    <textarea name="message" rows="5" placeholder="Tell me about your project"></textarea>
+                </label>
+                <button class="button primary" type="submit">Send Message</button>
+                <p class="form-status" role="status"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; {% now "Y" %} {{ name }}. Built with Django.</p>
+    </footer>
+
+    <script src="{% static 'portfolio/script.js' %}"></script>
+</body>
+</html>
